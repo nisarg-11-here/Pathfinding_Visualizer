@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="52d663c5-03b5-4803-a679-ea05271aba99" name="Changes" comment="Made a window using pygame and grid with colors on click.">
+    <list default="true" id="52d663c5-03b5-4803-a679-ea05271aba99" name="Changes" comment="Added the A* algorithm and gave key commands to operate using keyboard.">
+      <change afterPath="$PROJECT_DIR$/Algorithms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/Game.py" afterDir="false" />
     </list>
@@ -23,21 +24,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "nisarg-11-here"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;nisarg-11-here&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/nisarg-11-here/Pathfinding_Visualizer.git",
-    "accountId": "6b86e8f7-3bf9-49c5-9ffb-e750cd5c578f"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/nisarg-11-here/Pathfinding_Visualizer.git&quot;,
+    &quot;accountId&quot;: &quot;6b86e8f7-3bf9-49c5-9ffb-e750cd5c578f&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2iJcquLjMaOiYB1haIYBUP50Iwy" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -46,6 +47,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.Algorithms.executor": "Run",
     "Python.Game.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
@@ -74,7 +76,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1719212314563</updated>
-      <workItem from="1719212315925" duration="10440000" />
+      <workItem from="1719212315925" duration="13089000" />
+      <workItem from="1719315391174" duration="5174000" />
     </task>
     <task id="LOCAL-00001" summary="Made a window using pygame and grid with colors on click.">
       <option name="closed" value="true" />
@@ -84,7 +87,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719232282765</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added the A* algorithm and gave key commands to operate using keyboard.">
+      <option name="closed" value="true" />
+      <created>1719237045279</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1719237045279</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -103,9 +114,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Made a window using pygame and grid with colors on click." />
-    <option name="LAST_COMMIT_MESSAGE" value="Made a window using pygame and grid with colors on click." />
+    <MESSAGE value="Added the A* algorithm and gave key commands to operate using keyboard." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added the A* algorithm and gave key commands to operate using keyboard." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Pathfinding_Visualizer$Game.coverage" NAME="Game Coverage Results" MODIFIED="1719236663907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Pathfinding_Visualizer$Algorithms.coverage" NAME="Algorithms Coverage Results" MODIFIED="1719322537093" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Pathfinding_Visualizer$Game.coverage" NAME="Game Coverage Results" MODIFIED="1719323176166" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

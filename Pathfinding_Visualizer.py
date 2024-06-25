@@ -1,6 +1,8 @@
 import pygame
-import math
-from queue import PriorityQueue
+# import math
+# from queue import PriorityQueue
+# from queue import Queue
+import Algorithms
 
 WIDTH = 800
 WIN = pygame.display.set_mode((WIDTH, WIDTH))
@@ -89,58 +91,6 @@ class Spot:
     def __lt__(self, other):
         return False
 
-def h(p1, p2):
-    return abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])
-
-def reconstruct_path(came_from, current, draw):
-    while current in came_from:
-        current = came_from[current]
-        current.make_path()
-        draw()
-
-def algorithm(draw, grid, start, end):
-    count = 0
-    open_set = PriorityQueue()
-    open_set.put((0, count, start))
-    came_from = {}
-    g_score = {spot: float("inf") for row in grid for spot in row}
-    g_score[start] = 0
-    f_score = {spot: float("inf") for row in grid for spot in row}
-    f_score[start] = h(start.get_pos(), end.get_pos())
-
-    open_set_hash = {start}
-
-    while not open_set.empty():
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-
-        current = open_set.get()[2]
-        open_set_hash.remove(current)
-
-        if current == end:
-            reconstruct_path(came_from, end, draw)
-            start.make_start()
-            end.make_end()
-            return True
-
-        for neighbour in current.neighbours:
-            temp_g_score = g_score[current] + 1
-            if temp_g_score < g_score[neighbour]:
-                came_from[neighbour] = current
-                g_score[neighbour] = temp_g_score
-                f_score[neighbour] = temp_g_score + h(neighbour.get_pos(), end.get_pos())
-                if neighbour not in open_set_hash:
-                    count += 1
-                    open_set.put((f_score[neighbour], count, neighbour))
-                    open_set_hash.add(neighbour)
-                    neighbour.make_open()
-        draw()
-
-        if current != start:
-            current.make_closed()
-
-    return False
 
 def make_grid(rows, width):
     grid = []
@@ -196,9 +146,6 @@ def main(win, width):
             if event.type == pygame.QUIT:
                 run = False
 
-            # if started:
-            #     continue
-
             if pygame.mouse.get_pressed()[0]: # Left click
                 pos = pygame.mouse.get_pos()
                 row, col = get_clicked_pos(pos, ROWS, width)
@@ -227,17 +174,54 @@ def main(win, width):
                 elif spot == end:
                     end = None
 
-            if event.type == pygame.KEYDOWN:                        # if key is pressed
-                if event.key == pygame.K_SPACE and start and end:     # if the pressed key is SPACE
-                    for row in grid:
-                        for spot in row:
-                            spot.update_neighbours(grid)
+            if event.type == pygame.KEYDOWN:    # if key is pressed
 
-                    algorithm(lambda: draw(win, grid, ROWS, width), grid, start, end)
                 if event.key == pygame.K_c:
                     start = None
                     end = None
                     grid = make_grid(ROWS, width)
+
+                if event.key == pygame.K_m and start and end:     # if the pressed key is SPACE
+                    for row in grid:
+                        for spot in row:
+                            spot.update_neighbours(grid)
+
+                    Algorithms.a_star_m(lambda: draw(win, grid, ROWS, width), grid, start, end)
+
+                if event.key == pygame.K_e and start and end:  # if the pressed key is SPACE
+                    for row in grid:
+                        for spot in row:
+                            spot.update_neighbours(grid)
+
+                    Algorithms.a_star_e(lambda: draw(win, grid, ROWS, width), grid, start, end)
+
+                if event.key == pygame.K_a and start and end:  # if the pressed key is SPACE
+                    for row in grid:
+                        for spot in row:
+                            spot.update_neighbours(grid)
+
+                    Algorithms.a_star_c(lambda: draw(win, grid, ROWS, width), grid, start, end)
+
+                if event.key == pygame.K_d and start and end:  # if the pressed key is SPACE
+                    for row in grid:
+                        for spot in row:
+                            spot.update_neighbours(grid)
+
+                    Algorithms.dijkstra(lambda: draw(win, grid, ROWS, width), grid, start, end)
+
+                if event.key == pygame.K_b and start and end:  # if the pressed key is SPACE
+                    for row in grid:
+                        for spot in row:
+                            spot.update_neighbours(grid)
+
+                    Algorithms.bfs(lambda: draw(win, grid, ROWS, width), start, end)
+
+                if event.key == pygame.K_f and start and end:  # if the pressed key is SPACE
+                    for row in grid:
+                        for spot in row:
+                            spot.update_neighbours(grid)
+
+                    Algorithms.dfs(lambda: draw(win, grid, ROWS, width), start, end)
 
     pygame.quit()
 
