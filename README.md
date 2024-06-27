@@ -25,5 +25,6 @@ The different algorithms that I have incorporated in the project are A* (A star)
     * b - breadth-first search
     * d - Dijkstra
     * f - Depth-first search
+    * c - clear screen
 
 Have a good day :)
