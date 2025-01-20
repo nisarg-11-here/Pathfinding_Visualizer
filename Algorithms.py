@@ -18,9 +18,15 @@ def reconstruct_path(came_from, current, draw):
         current.make_path()
         draw()
 
+def a_star_decide(draw, grid, start, end, key):
+    if key == pygame.K_m:
+        a_star(draw, grid, start, end, manhatten)
+    if key == pygame.K_e:
+        a_star(draw, grid, start, end, euclidean)
+    if key == pygame.K_a:
+        a_star(draw, grid, start, end, civ)
 
-# A * (A star) algorithm with manhattan distance formula
-def a_star_m(draw, grid, start, end):
+def a_star(draw, grid, start, end, function):
     count = 0
     open_set = PriorityQueue()
     open_set.put((0, count, start))
@@ -28,7 +34,7 @@ def a_star_m(draw, grid, start, end):
     g_score = {spot: float("inf") for row in grid for spot in row}
     g_score[start] = 0
     f_score = {spot: float("inf") for row in grid for spot in row}
-    f_score[start] = manhatten(start.get_pos(), end.get_pos())
+    f_score[start] = function(start.get_pos(), end.get_pos())
 
     open_set_hash = {start}
 
@@ -51,97 +57,7 @@ def a_star_m(draw, grid, start, end):
             if temp_g_score < g_score[neighbour]:
                 came_from[neighbour] = current
                 g_score[neighbour] = temp_g_score
-                f_score[neighbour] = temp_g_score + manhatten(neighbour.get_pos(), end.get_pos())
-                if neighbour not in open_set_hash:
-                    count += 1
-                    open_set.put((f_score[neighbour], count, neighbour))
-                    open_set_hash.add(neighbour)
-                    neighbour.make_open()
-        draw()
-
-        if current != start:
-            current.make_closed()
-
-    return False
-
-# A* (A star) algorithm with Euclidean distance
-def a_star_e(draw, grid, start, end):
-    count = 0
-    open_set = PriorityQueue()
-    open_set.put((0, count, start))
-    came_from = {}
-    g_score = {spot: float("inf") for row in grid for spot in row}
-    g_score[start] = 0
-    f_score = {spot: float("inf") for row in grid for spot in row}
-    f_score[start] = euclidean(start.get_pos(), end.get_pos())
-
-    open_set_hash = {start}
-
-    while not open_set.empty():
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-
-        current = open_set.get()[2]
-        open_set_hash.remove(current)
-
-        if current == end:
-            reconstruct_path(came_from, end, draw)
-            start.make_start()
-            end.make_end()
-            return True
-
-        for neighbour in current.neighbours:
-            temp_g_score = g_score[current] + 1
-            if temp_g_score < g_score[neighbour]:
-                came_from[neighbour] = current
-                g_score[neighbour] = temp_g_score
-                f_score[neighbour] = temp_g_score + euclidean(neighbour.get_pos(), end.get_pos())
-                if neighbour not in open_set_hash:
-                    count += 1
-                    open_set.put((f_score[neighbour], count, neighbour))
-                    open_set_hash.add(neighbour)
-                    neighbour.make_open()
-        draw()
-
-        if current != start:
-            current.make_closed()
-
-    return False
-
-# A* (A star) algorithm with Civ distance
-def a_star_c(draw, grid, start, end):
-    count = 0
-    open_set = PriorityQueue()
-    open_set.put((0, count, start))
-    came_from = {}
-    g_score = {spot: float("inf") for row in grid for spot in row}
-    g_score[start] = 0
-    f_score = {spot: float("inf") for row in grid for spot in row}
-    f_score[start] = civ(start.get_pos(), end.get_pos())
-
-    open_set_hash = {start}
-
-    while not open_set.empty():
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-
-        current = open_set.get()[2]
-        open_set_hash.remove(current)
-
-        if current == end:
-            reconstruct_path(came_from, end, draw)
-            start.make_start()
-            end.make_end()
-            return True
-
-        for neighbour in current.neighbours:
-            temp_g_score = g_score[current] + 1
-            if temp_g_score < g_score[neighbour]:
-                came_from[neighbour] = current
-                g_score[neighbour] = temp_g_score
-                f_score[neighbour] = temp_g_score + civ(neighbour.get_pos(), end.get_pos())
+                f_score[neighbour] = temp_g_score + function(neighbour.get_pos(), end.get_pos())
                 if neighbour not in open_set_hash:
                     count += 1
                     open_set.put((f_score[neighbour], count, neighbour))

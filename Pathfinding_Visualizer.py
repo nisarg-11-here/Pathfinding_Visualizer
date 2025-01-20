@@ -176,47 +176,33 @@ def main(win, width):
 
             if event.type == pygame.KEYDOWN:    # if key is pressed
 
-                if event.key == pygame.K_c:
+                if event.key == pygame.K_c:     # c - clear the screen
                     start = None
                     end = None
                     grid = make_grid(ROWS, width)
 
-                if event.key == pygame.K_m and start and end:     # if the pressed key is SPACE
+                if start and end and (event.key == pygame.K_a or event.key == pygame.K_m or event.key == pygame.K_e): # if the pressed key is m or e or a
                     for row in grid:
                         for spot in row:
                             spot.update_neighbours(grid)
 
-                    Algorithms.a_star_m(lambda: draw(win, grid, ROWS, width), grid, start, end)
+                    Algorithms.a_star_decide(lambda: draw(win, grid, ROWS, width), grid, start, end, event.key)
 
-                if event.key == pygame.K_e and start and end:  # if the pressed key is SPACE
-                    for row in grid:
-                        for spot in row:
-                            spot.update_neighbours(grid)
-
-                    Algorithms.a_star_e(lambda: draw(win, grid, ROWS, width), grid, start, end)
-
-                if event.key == pygame.K_a and start and end:  # if the pressed key is SPACE
-                    for row in grid:
-                        for spot in row:
-                            spot.update_neighbours(grid)
-
-                    Algorithms.a_star_c(lambda: draw(win, grid, ROWS, width), grid, start, end)
-
-                if event.key == pygame.K_d and start and end:  # if the pressed key is SPACE
+                if event.key == pygame.K_d and start and end:  # if the pressed key is d - dijkstra
                     for row in grid:
                         for spot in row:
                             spot.update_neighbours(grid)
 
                     Algorithms.dijkstra(lambda: draw(win, grid, ROWS, width), grid, start, end)
 
-                if event.key == pygame.K_b and start and end:  # if the pressed key is SPACE
+                if event.key == pygame.K_b and start and end:  # if the pressed key is b - bfs
                     for row in grid:
                         for spot in row:
                             spot.update_neighbours(grid)
 
                     Algorithms.bfs(lambda: draw(win, grid, ROWS, width), start, end)
 
-                if event.key == pygame.K_f and start and end:  # if the pressed key is SPACE
+                if event.key == pygame.K_f and start and end:  # if the pressed key is f - dfs
                     for row in grid:
                         for spot in row:
                             spot.update_neighbours(grid)
